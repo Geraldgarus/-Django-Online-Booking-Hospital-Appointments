@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Appointments</title>
+</head>
+<body>
+    <h1>All Appointments</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li>
+                {{ appointment.first_name }} {{ appointment.last_name }}: {{ appointment.description }}
+            </li>
+        {% empty %}
+            <li>No appointments available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

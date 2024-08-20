@@ -1,0 +1,116 @@
+{% extends 'layouts/base2.html' %}
+
+{% block content %}
+  <h1>Update Attend</h1>
+
+  <style>
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .form-row label {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-row:nth-of-type(1) .form-field {
+      width: 48%;
+      margin-right: 4%;
+    }
+
+    .form-row:nth-of-type(1) .form-field:last-child {
+      margin-right: 0;
+    }
+
+    .form-row:nth-of-type(2) textarea {
+      height: 100px;
+    }
+
+    .form-row:nth-of-type(3) .form-field {
+      width: 48%;
+      margin-right: 4%;
+    }
+
+    .form-row:nth-of-type(3) .form-field:last-child {
+      margin-right: 0;
+    }
+
+    .form-row:nth-of-type(4) input,
+    .form-row:nth-of-type(4) select {
+      width: 100%;
+    }
+
+    button[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="form-row">
+      <div class="form-field">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+      </div>
+      <div class="form-field">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+      </div>
+    </div>
+    
+    <div class="form-row">
+      {{ form.description.label_tag }}
+      {{ form.description }}
+    </div>
+    
+    <div class="form-row">
+      <div class="form-field">
+        {{ form.doctor.label_tag }}
+        {{ form.doctor }}
+      </div>
+      <div class="form-field">
+        {{ form.cost.label_tag }}
+        {{ form.cost }}
+      </div>
+    </div>
+    
+    <div class="form-row">
+      {{ form.appointment.label_tag }}
+      {{ form.appointment }}
+    </div>
+    
+    <button type="submit">Save changes</button>
+    <a href="{% url 'attend_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+
+{% endblock %}

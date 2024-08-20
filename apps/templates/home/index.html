@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management</title>
+   
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/static/images/about.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        /* Ensure header covers full width */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark background with some transparency */
+            color: blue;
+            position: fixed; /* Optional: fixes header position at the top */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensures the header stays on top of other content */
+        }
+        
+        /* Style links in the header */
+        .left-menu a, .right-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        
+        .left-menu a:hover, .right-menu a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Container settings */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px; /* Adjust this to ensure content isn't hidden behind the fixed header */
+        }
+        
+        /* Form styling */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .form-group {
+            margin: 10px 0;
+            flex: 1;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="left-menu">
+                <a href="#hospital-management">Hospital Management</a>
+                <a href="{% url 'register' %}">Admin</a>
+                <a href="{% url 'register_doctor' %}">Doctor</a>
+                <a href="{% url 'register_patient' %}">Patient</a>
+             
+            </div>
+            <div class="right-menu">
+                <a href="#about">About</a>
+                <a href="#contacts">Contacts</a>
+            </div>
+        </header>
+        <!-- Add more content here -->
+    </div>
+</body>
+</html>

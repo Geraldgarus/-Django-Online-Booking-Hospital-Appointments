@@ -1,0 +1,111 @@
+{% extends 'layouts/base1.html' %}
+<link rel="stylesheet" href="/static/assets/css/form.css" type="text/css">
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+    <style>
+        /* Internal CSS Styles */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .form-field {
+            flex: 1;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-field:last-child {
+            margin-right: 0;
+        }
+
+        /* Ensures the description field spans the full width of its row */
+        .form-field.description {
+            flex: 1 1 100%; /* Full width for the description field */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .form-container form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <!-- First Row: First Name and Last Name -->
+            <div class="form-row">
+                <div class="form-field">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-field">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+            </div>
+
+            <!-- Second Row: Description -->
+            <div class="form-row">
+                <div class="form-field description">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    {% include "includes/footer.html" %}
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

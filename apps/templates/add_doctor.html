@@ -1,0 +1,123 @@
+{% extends 'layouts/base2.html' %}
+
+{% block title %} DoctorRegistration{% endblock title %}
+
+{% block content %}
+    <h1>DoctorRegistration</h1>
+
+    <style>
+        /* Internal CSS Styles */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-row:first-child {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-field {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .form-field:last-child {
+            margin-right: 0;
+        }
+
+        .form-row.full-width {
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Specific Style for Specialist Field */
+        .form-row.specialist-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row.specialist-field .form-field {
+            flex: 0; /* Reset flex-grow */
+        }
+
+        .form-row.specialist-field input {
+            width: 100%; /* Ensure full width */
+            max-width: 100%; /* Prevent exceeding container width */
+        }
+    </style>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <!-- First Row: First Name and Last Name -->
+            <div class="form-row">
+                <div class="form-field">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-field">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+            </div>
+
+            <!-- Second Row: Specialist -->
+            <div class="form-row specialist-field">
+                <div class="form-field">
+                    {{ form.specialist.label_tag }}
+                    {{ form.specialist }}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    {% include "includes/footer.html" %}
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

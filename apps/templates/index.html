@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/static/images/about.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Ensure header covers full width */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark background with some transparency */
+            color: white;
+            position: fixed; /* Optional: fixes header position at the top */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensures the header stays on top of other content */
+        }
+
+        /* Style links in the header */
+        .left-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .left-menu a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container settings */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px; /* Adjust this to ensure content isn't hidden behind the fixed header */
+        }
+
+        /* Form styling */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            margin: 10px 0;
+            flex: 1;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+
+        /* Navigation bar styles */
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            display: none; /* Initially hidden */
+            z-index: 1001; /* Ensure it appears above other content */
+            width: 200px; /* Adjust the width of the navigation bar */
+        }
+
+        .nav-bar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-bar a:hover {
+            background-color: #555;
+        }
+
+        .nav-bar .last-link {
+            border-bottom: none; /* Remove border for the last item */
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1002; /* Ensure toggle button is on top of the nav bar */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 767px) {
+            header {
+                padding: 15px; /* Reduced padding for smaller screens */
+            }
+
+            .left-menu a {
+                font-size: 16px; /* Smaller font size for mobile */
+                margin: 0 10px;
+            }
+
+            .container {
+                width: 95%; /* Adjust container width on small screens */
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+
+            .form-row {
+                flex-direction: column; /* Stack form fields vertically on small screens */
+            }
+
+            .form-group {
+                width: 100%; /* Ensure form groups take full width on small screens */
+                margin: 5px 0; /* Reduce margin for smaller screens */
+            }
+
+            button {
+                width: 100%; /* Ensure buttons take full width on small screens */
+            }
+
+            /* Hide navigation links by default on small screens */
+            .nav-bar {
+                display: none; /* Ensure it's hidden by default */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left-menu">
+            <a href="#hospital-management">Hospital Management</a>
+            <a href="{% url 'register_manager' %}">Admin</a>
+            <a href="{% url 'register_doctor' %}">Doctor</a>
+            <a href="{% url 'register_patient' %}">Patient</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Add more content here -->
+    </div>
+
+    <!-- Navigation bar toggle button -->
+    <button class="nav-toggle" onclick="toggleNav()">Menu</button>
+
+    <!-- Navigation bar -->
+    <div class="nav-bar" id="navBar">
+        <a href="#hospital-management">Hospital Management</a>
+        <a href="{% url 'register_manager' %}">Admin</a>
+        <a href="{% url 'register_doctor' %}">Doctor</a>
+        <a href="{% url 'register_patient' %}">Patient</a>
+        <a href="">About</a>
+        <a href="#contacts" class="last-link">Contacts</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            var navBar = document.getElementById('navBar');
+            if (navBar.style.display === 'block') {
+                navBar.style.display = 'none';
+            } else {
+                navBar.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

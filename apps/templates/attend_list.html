@@ -1,0 +1,56 @@
+<!-- Template: attend_list.html -->
+{% extends 'layouts/base2.html' %}
+
+{% block title %} Attend List {% endblock title %}
+
+{% block content %}
+    <h1>Attend List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Doctor</th>
+                <th>Appointment</th>
+                <th class="actions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attend in attends %}
+                <tr>
+                    <td>{{ attend.id }}</td>
+                    <td>{{ attend.first_name }}</td>
+                    <td>{{ attend.last_name }}</td>
+                    <td>{{ attend.description }}</td>
+                    <td>{{ attend.cost }}</td>
+                    <td>{{ attend.doctor }}</td>
+                    <td>{{ attend.appointment }}</td>
+                    <td class="actions">
+                        <!-- Update Button -->
+                        <a href="{% url 'update_attend' attend.id %}" class="btn btn-update">Update</a>
+                        <!-- Delete Button -->
+                        <form action="{% url 'delete_attend' attend.id %}" method="post" style="display:inline;" onsubmit="return confirmDelete();">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">No attendances found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Internal JavaScript for Confirm Delete -->
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this attendance?');
+        }
+    </script>
+{% endblock content %}

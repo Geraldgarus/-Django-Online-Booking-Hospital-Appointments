@@ -1,0 +1,71 @@
+{% extends 'layouts/base1.html' %}
+
+{% block title %} Update Appointment {% endblock title %}
+
+{% block content %}
+    <h1>Update Appointment</h1>
+    <style>
+        .form-container {
+            max-width: 600px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center align the form */
+            padding: 20px; /* Add padding inside the container */
+            border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            background-color: #f9f9f9; /* Optional: Background color for contrast */
+        }
+        .form-row {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px; /* Add padding inside the input/textarea */
+            border: 1px solid #ccc; /* Add border for better visibility */
+            border-radius: 4px; /* Optional: Add rounded corners to inputs */
+        }
+        .form-group textarea {
+            height: 100px; /* Adjust height as needed */
+        }
+        .form-actions {
+            margin-top: 20px;
+        }
+    </style>
+    
+    <form method="post" class="form-container">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'patient_appointments' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+{% endblock content %}

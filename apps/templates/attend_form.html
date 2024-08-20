@@ -1,0 +1,111 @@
+<!-- Template: attend_form.html -->
+{% extends 'layouts/base.html' %}
+
+{% block title %} Update Attendance {% endblock title %}
+
+{% block content %}
+    <h1>Update Attendance</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.first_name.label_tag }}<br>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label_tag }}<br>
+                {{ form.last_name }}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.description.label_tag }}<br>
+                {{ form.description }}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.doctor.label_tag }}<br>
+                {{ form.doctor }}
+            </div>
+            <div class="form-group">
+                {{ form.cost.label_tag }}<br>
+                {{ form.cost }}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.appointment.label_tag }}<br>
+                {{ form.appointment }}
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <a href="{% url 'attend_list_m' %}" class="btn btn-secondary">Cancel</a>
+
+    </form>
+
+
+    <!-- Internal CSS -->
+    <style>
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin-right: 1em;
+        }
+        .form-group:last-child {
+            margin-right: 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.4em;
+            font-size: 0.9em;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            font-size: 0.9em;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+    </style>
+{% endblock content %}

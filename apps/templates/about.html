@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" >
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <title>index</title>
+  <style>
+  
+.header2 {
+    position: fixed;
+    top: 0; 
+    right: 0px;
+    width: 1350px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    clear: left;
+    z-index: 1000; 
+    margin: 0 3px;
+    
+}
+
+.header2 p {
+    color: white;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 10px;
+    /* Add animation properties */
+    animation-name: slide-left;
+    animation-duration: 20s; /* Adjust duration as needed */
+    animation-timing-function: linear; /* Linear timing */
+    animation-iteration-count: infinite; /* Repeat indefinitely */
+}
+
+/* Define keyframes for slide-left animation */
+@keyframes slide-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.block1 {
+    position: fixed;
+    top: 40px; /* Adjust top value to account for .header, .header1, and .header2 heights */
+    right: 0;
+    height: 110px;
+    width: 720px;
+    background-color: darkblue;
+    text-align: center;
+    z-index: 1000; 
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.block1 a {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.block1 a:hover {
+    color: black;
+}
+
+
+.block2 {
+    position: fixed;
+    top: 40px; /* Adjust top value to account for .header, .header1, and .header2 heights */
+    left: 0;
+    height: 110px;
+    width: 630px;
+    background-color:darkblue;
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+.block2 p {
+    color: white;
+    font-weight: 1000;
+    font-size: 40px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+.blockimg {
+    display: block;
+    height: 300px;
+    width: 1350px;
+    background-size: 100%;
+    background-image: url(./images/image1.jpg);
+    overflow: hidden; /* Ensures images don't overflow */
+    position: absolute; /* Adjusted to overlap with fixed headers */
+    top: 150px; /* Adjusted to align with the bottom of fixed headers */
+}
+.blockimg h1{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color:blue;
+    font-size: 70px;
+    margin-top: 110px;
+
+}
+
+.about {
+    top: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 100%;
+  background-color: teal;
+  overflow: hidden; /* Ensures images don't overflow */
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.about-image {
+  width: 100%; /* Take full width of the parent container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure image covers the area */
+  position: relative; /* Ensure it respects its parent's size */
+}
+
+
+.about-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  font-size: 20px;
+}
+
+.about-content h1 {
+  color: black; /* Ensure the title is black */
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.callBlock {
+  top: 70px;
+  display: flex;
+  justify-content: flex-start; /* Adjusted to start content from the left */
+  align-items: center;
+  height: 350px;
+  width: 100%;
+  background-image: url('./images/call-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.callBlock .call-content {
+  text-align: center; /* Align text to the left */
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+  padding: 20px;
+  max-width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 30%; /* Adjusted left position for spacing */
+  transform: translate(-50%, -50%);
+}
+
+.callBlock .call-content h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.callBlock .call-content p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .callBlock .call-content {
+    max-width: 80%; /* Adjust max-width for smaller screens */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .callBlock .call-content {
+    max-width: 90%; /* Adjust max-width for mobile screens */
+  }
+}
+
+
+.exllentServices {
+top: 1400px;
+height: 500px;
+width: 100%;
+background-color:none;
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Allow containers to wrap */
+  padding: 20px; /* Add padding for spacing */
+  margin-top: 90px; /* Margin from the bottom of the about section */
+}
+
+.exllentServices .container {
+  display: flex;
+  justify-content: space-around; /* Adjust alignment as per your design */
+  width: 90%; /* Adjust width as needed */
+  margin-bottom: 20px; /* Space between containers */
+}
+
+.exllentServices .row {
+  display: flex;
+  flex-wrap: wrap; /* Allow columns to wrap */
+  justify-content: center; /* Center items horizontally */
+}
+
+.exllentServices .column {
+  flex: 0 0 calc(33.33% - 20px); /* Adjust column width for three columns */
+  margin: 0 10px; /* Adjust margin between columns */
+}
+
+.exllentServices .small-block {
+  background-color: teal ;
+  color: white;
+  height: 200px;
+  width: 320px;
+  margin-bottom: 20px; /* Adjust spacing between small blocks */
+  text-align: center;
+  padding: 20px; /* Add padding inside each block */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  position: relative; /* Ensure icons are positioned correctly */
+}
+
+.exllentServices .small-block i {
+  font-size: 40px; /* Adjust icon size */
+  margin-bottom: 10px; /* Spacing between icon and heading */
+}
+
+.exllentServices .small-block h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.exllentServices .small-block p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .exllentServices .column {
+    flex: 0 0 calc(50% - 20px); /* Adjust column width for tablets and smaller devices */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .exllentServices .column {
+    flex: 0 0 calc(100% - 20px); /* Full width for mobile devices */
+    margin-bottom: 10px;
+  }
+}
+
+.staffBlock {
+    position: absolute;
+    top: 2900px; /* Adjust this value as per your layout needs */
+    width: 1350px;
+    height: 400px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Adjust alignment as per your design */
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}.staffBlock1 {
+    position: absolute;
+    top: calc(1450px + 400px); /* Ensures .staffBlock1 appears immediately after .staffBlock */
+    width: 1350px;
+    height: 1000px; /* Adjusted height to accommodate small and big blocks */
+    background-color: darkblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Adjust alignment as per your design */
+    color: white;
+    font-size: 24px;
+    text-align: left;
+}
+.staffBlock1 h1{
+margin-top: 0px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.left-blocks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.image-overlay {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.image-overlay img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency as needed */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-content h2,
+.overlay-content p {
+  color: white;
+  text-align: center;
+  margin: 10px;
+}
+
+.image-overlay:hover .overlay-content {
+  opacity: 2;
+}
+
+
+.small-block {
+    background-color: darkblue;
+    color: white;
+    margin-bottom: 10px; /* Adjust spacing between small blocks */
+    text-align: center;
+    height: 100px;
+    width: 100%; /* Ensure each block takes full width of left-blocks */
+}
+
+.right-block {
+    background-color: darkblue;
+    color: white;
+    width: 40%;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    overflow: auto; /* Enable scrolling if content exceeds */
+    float: right;
+}
+
+.right-block h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+    text-align: left; /* Adjust text alignment */
+}
+
+#appointmentForm {
+    max-width: 100%;
+}
+
+#appointmentForm label {
+    display: block;
+    text-align: left; /* Align labels to the left */
+    color: white;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+#appointmentForm input[type="text"],
+#appointmentForm input[type="email"],
+#appointmentForm input[type="tel"],
+#appointmentForm select,
+#appointmentForm input[type="date"],
+#appointmentForm input[type="time"] {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+#appointmentForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: lightseagreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#appointmentForm button:hover {
+    background-color: teal;
+}
+
+
+
+.staffBlock img {
+    max-height: 330px; /* Ensure images fit within their container */
+    max-width: 100%;
+}
+
+.footer {
+    position: absolute;
+    top: 3300px; /* Adjust this value as per your layout needs */
+    width: 1350px;
+    height: 400px;
+    background-color:  #1B2C51 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Adjust alignment as per your design */
+    flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.footer1,
+.footer2,
+.footer3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px; /* Adjust width as needed */
+    height: 370px;
+    background-color:  #1B2C51 ;
+}
+
+.footer1 a {
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footer1 a:hover {
+    color: black;
+}
+
+.footer h1 {
+    font-size: 30px;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    font-size: 20px;
+    color: white;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+    .staff-img {
+      max-height: 330px;
+      max-width: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .staff-img.animate {
+      opacity: 1;
+    }
+
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 0 0 calc(50% - 20px); /* Adjust column width for tablets and smaller devices */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .column {
+        flex: 0 0 calc(100% - 20px); /* Full width for mobile devices */
+        margin-bottom: 10px;
+    }
+}
+  </style>
+</head>
+<body>
+  <div class="header2">
+    <p>Opening hours: Mon-Sat: 24 hrs, Sunday: Closed, email:dmg@gmail.com, contacts: 0626498725, location:makumbusho dar es salaam</p>
+  </div>
+
+  <div class="block1">
+    <a href="">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="">Staff</a>
+  </div>
+  <div class="block2">
+    <p><b>DMG Hospital</b></p>
+  </div>
+  <div class="blockimg">
+    <h1>Best Healthy Solution At DMG Hospital</h1>
+  </div>
+  <div class="about">
+    <img src="./images/about.jpg" alt="About Image" class="about-image">
+    <div class="about-content">
+        <h1>Best medical care for yourself and the family</h1>
+        "Experience advanced surgical care at DMG Hospital, where our skilled
+         specialists perform intricate procedures with precision 
+         and care. From routine surgeries to complex interventions,
+          we prioritize patient safety and recovery. Trust our expertise in surgical solutions tailored to meet diverse medical needs."
+    </div>
+</div>
+ <div class="callBlock">
+    <div class="call-content">
+      <h1>MRI Services</h1>
+      <p>MRI services at DMG Hospital provide advanced diagnostic imaging using state-of-the-art Magnetic Resonance Imaging technology. Our specialized MRI unit offers detailed scans for accurate diagnoses of various medical conditions, including neurological disorders, musculoskeletal injuries, and internal organ abnormalities. With expert
+         radiologists and modern equipment, we ensure precise
+          imaging results to guide personalized treatment plans, prioritizing patient comfort and safety throughout the procedure.</p>
+    </div>
+  </div>
+
+
+<div class="exllentServices">
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-user-md"></i> <!-- Icon for Operation and Surgery -->
+            <h2>Operation and Surgery</h2>
+            <p>Advanced surgical procedures for complex medical conditions and emergencies.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-home"></i> <!-- Icon for Outdoor Checkup -->
+            <h2>Outdoor Checkup</h2>
+            <p>Medical consultations and checkups conducted outdoors for convenience and accessibility.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-ambulance"></i> <!-- Icon for Emergency Care -->
+            <h2>Emergency Care</h2>
+            <p>Immediate medical assistance for critical conditions and urgent healthcare needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-vial"></i> <!-- Icon for Blood Testing -->
+            <h2>Blood Testing</h2>
+            <p>Accurate laboratory testing services for comprehensive blood analysis and diagnostics.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-pills"></i> <!-- Icon for Medicine and Pharmacy -->
+            <h2>Medicine and Pharmacy</h2>
+            <p>Pharmaceutical services providing essential medications and prescriptions.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="small-block">
+            <i class="fas fa-user-md"></i> <!-- Reuse Icon for Operation and Surgery -->
+            <h2>Operation and Surgery</h2>
+            <p>Specialized surgical treatments catering to diverse medical needs and conditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="staffBlock">
+    <div class="container">
+      <div class="row">
+          <div class="column">
+              <div class="card">
+                  <img src="./images/team-1.jpg" alt="Doctor 1">
+                  <div class="container-text">
+                      <h1>Dr.Alivinus Mkombozi</h1>
+                      <p>Dentist Doctor</p>
+                  </div>
+              </div>
+          </div>
+          <div class="column">
+              <div class="card">
+                  <img src="./images/team-2.jpg" alt="Doctor 2">
+                  <div class="container-text">
+                      <h1>Dr.Gerald Garus</h1>
+                      <p>psychologist Doctors</p>
+                  </div>
+              </div>
+          </div>
+          <div class="column">
+              <div class="card">
+                  <img src="images/team-3.jpg" alt="Doctor 3">
+                  <div class="container-text">
+                      <h1>Dr.limbu reuben</h1>
+                      <p>General Doctor</p>
+                  </div>
+              </div>
+          </div>
+          <div class="column">
+              <div class="card">
+                  <img src="images/team-4.jpg" alt="Doctor 4">
+                  <div class="container-text">
+                      <h1>Dr.epiphania Garus</h1>
+                      <p>Sugery Doctor</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+      </div>
+      <div class="staffBlock1">
+        <div class="left-blocks">
+            <!-- Image with overlay -->
+            <div class="image-overlay">
+              <img src="./images/about.jpg" alt="About Image">
+              <div class="overlay-content">
+                <h2>General Healthy checkup At dmg Hospital</h2>
+                <p>At DMG Hospital, our general checkups provide comprehensive
+                     assessments to monitor your health status and detect early signs of potential health issues. Our experienced physicians offer personalized care and valuable health education, ensuring you receive proactive healthcare solutions tailored to your needs.
+                     Prioritize your well-being with DMG Hospital today.</p>
+              </div>
+            </div>
+          </div>
+        <div class="right-block">
+          <h2>Book Appointment</h2>
+          <form id="appointmentForm">
+              <label for="fullName">Full Name:</label><br>
+              <input type="text" id="fullName" name="fullName" required><br><br>
+              <label for="email">Email:</label><br>
+              <input type="email" id="email" name="email" required><br><br>
+              <label for="phoneNumber">Phone Number:</label><br>
+              <input type="tel" id="phoneNumber" name="phoneNumber" required><br><br>
+              <label for="doctor">Choose a Doctor:</label><br>
+              <select id="doctor" name="doctor" required>
+                  <option value="Doctor 1">Doctor 1</option>
+                  <option value="Doctor 2">Doctor 2</option>
+                  <option value="Doctor 3">Doctor 3</option>
+              </select><br><br>
+              <label for="appointmentDate">Choose Date:</label><br>
+              <input type="date" id="appointmentDate" name="appointmentDate" required><br><br>
+              <label for="appointmentTime">Choose Time:</label><br>
+              <input type="time" id="appointmentTime" name="appointmentTime" required><br><br>
+              <button type="submit">Book Appointment</button>
+          </form>
+      </div>
+    </div>
+  <div class="footer">
+    <div class="footer1">
+      <h1>RELATED LINKS</h1>
+      <a href="">Make Appointments</a><br><br>
+      <a href="">General Doctors</a><br><br>
+      <a href="">Physician Doctors</a><br><br>
+      <a href="">psychologist Doctors</a>
+    </div>
+    <div class="footer2">
+      <h1>CONTACT US</h1>
+      <p>DMG Hospital</p>
+      <p>P.O.BOX 3560</p>
+      <p>Makumbusho</p>
+      <p>Contacts: 0626498725</p>
+      <p>Email: dmg@gmail.com</p>
+    </div>
+    <div class="footer3">
+      <h1>DMG Hospital</h1>
+      <p>Welcome to DMG Hospital located in makumbusho dar es salaam, 12km from the city center. We have got healthy specialized doctors for surgery operation, dentist, heart diseases, therapist, general doctor, psychologist, optician.</p>
+    </div>
+  </div>
+
+  <script>
+    // Function to check if an element is in viewport
+    function isInViewport(element) {
+      var rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    // Function to handle scroll event
+    function handleScroll() {
+      var staffBlock = document.querySelector('.staffBlock');
+      var staffImages = document.querySelectorAll('.staff-img');
+
+      // Check if staffBlock is in viewport
+      if (isInViewport(staffBlock)) {
+        // Add a class to trigger the animation
+        staffImages.forEach(function(img) {
+          img.classList.add('animate');
+        });
+      }
+    }
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Initial check when page loads
+    handleScroll();
+  </script>
+</body>
+</html>

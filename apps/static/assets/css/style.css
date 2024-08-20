@@ -1,0 +1,107 @@
+/* General table styles */
+table {
+    width: 100%; /* Adjusted to ensure it fills its container */
+    border-collapse: collapse;
+    margin: 20px 0;
+    margin-left: 0px;
+}
+
+/* Wrapper to enable horizontal scroll */
+.table-wrapper {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Thead styles */
+thead {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 2px;
+}
+
+.btn-update, .btn-add {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-update:hover, .btn-add:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Actions column */
+.actions {
+    text-align: center;
+    width: 200px;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    table {
+        font-size: 12px; /* Adjust font size for better readability on small screens */
+    }
+    
+    th, td {
+        padding: 6px; /* Adjust padding to save space */
+    }
+
+    .actions {
+        width: auto; /* Allow actions column to adapt to content */
+        text-align: center;
+    }
+
+    .btn {
+        font-size: 12px; /* Adjust button font size */
+        padding: 4px 8px; /* Adjust button padding */
+    }
+    
+    /* Additional styling to handle small screens */
+    .table-wrapper {
+        margin-left: 0; /* Remove left margin on small screens */
+    }
+}

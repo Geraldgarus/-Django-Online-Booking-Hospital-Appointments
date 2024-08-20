@@ -1,0 +1,21 @@
+{% extends 'layouts/base1.html' %}
+
+{% block title %} Appointment Details {% endblock title %}
+
+{% block content %}
+    <h1>Appointment Details</h1>
+
+    <div class="appointment-details">
+        <p><strong>ID:</strong> {{ appointment.id }}</p>
+        <p><strong>First Name:</strong> {{ appointment.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ appointment.last_name }}</p>
+        <p><strong>Description:</strong> {{ appointment.description }}</p>
+        <p><strong>Date:</strong> {{ appointment.date }}</p> <!-- Adjust based on your model fields -->
+        <p><strong>Time:</strong> {{ appointment.time }}</p> <!-- Adjust based on your model fields -->
+        <p><strong>Doctor:</strong> {{ appointment.doctor }}</p> <!-- Adjust based on your model fields -->
+        <!-- Add more fields as necessary -->
+    </div>
+
+    <a href="{% url 'appointment_list' %}">Back to Appointment List</a>
+
+{% endblock content %}
