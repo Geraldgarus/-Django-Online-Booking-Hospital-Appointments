@@ -12,10 +12,10 @@
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Description</th>
+                <th>Comment</th>
                 <th>Cost</th>
-                <th>Doctor</th>
-                <th>Appointment</th>
+                <th>Doctor Name</th>
+              
                 <th class="actions">Actions</th>
             </tr>
         </thead>
@@ -23,12 +23,13 @@
             {% for attend in attends %}
                 <tr>
                     <td>{{ attend.id }}</td>
-                    <td>{{ attend.first_name }}</td>
-                    <td>{{ attend.last_name }}</td>
-                    <td>{{ attend.description }}</td>
+                    <td>{{ attend.appointment.user.first_name }}</td>  <!-- First Name from Appointment's user -->
+                    <td>{{ attend.appointment.user.last_name }}</td>   <!-- Last Name from Appointment's user -->
+                  
+                    <td>{{ attend.comment }}</td>
                     <td>{{ attend.cost }}</td>
-                    <td>{{ attend.doctor }}</td>
-                    <td>{{ attend.appointment }}</td>
+                    <td>{{ attend.doctor.first_name }} {{ attend.doctor.last_name }}</td> <!-- Concatenate Doctor's Full Name -->
+                   
                     <td class="actions">
                         <!-- Update Button -->
                         <a href="{% url 'update_attend1' attend.id %}" class="btn btn-update">Update</a>

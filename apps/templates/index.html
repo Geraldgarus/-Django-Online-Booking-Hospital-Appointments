@@ -72,7 +72,9 @@
             overflow: hidden;
             display: none; /* Initially hidden */
             z-index: 1001; /* Ensure it appears above other content */
-            width: 200px; /* Adjust the width of the navigation bar */
+            width: auto; /* Adjust width */
+            max-width: 250px; /* Limit the maximum width of the nav bar */
+            text-decoration: none;
         }
 
         .nav-bar a {
@@ -81,6 +83,7 @@
             text-decoration: none;
             padding: 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
         }
 
         .nav-bar a:hover {
@@ -110,9 +113,8 @@
                 padding: 15px; /* Reduced padding for smaller screens */
             }
 
-            .left-menu a {
-                font-size: 16px; /* Smaller font size for mobile */
-                margin: 0 10px;
+            .left-menu {
+                display: none; /* Hide the header links on small screens */
             }
 
             .container {
@@ -133,9 +135,20 @@
                 width: 100%; /* Ensure buttons take full width on small screens */
             }
 
-            /* Hide navigation links by default on small screens */
             .nav-bar {
-                display: none; /* Ensure it's hidden by default */
+                display: block; /* Show navigation bar on small screens */
+                width: auto; /* Adjust width */
+                max-width: 250px; /* Limit the maximum width of the nav bar */
+                right: 10px; /* Position nav bar closer to the right edge */
+            }
+
+            /* Adjust toggle button for small screens */
+            .nav-toggle {
+                padding: 8px 16px; /* Smaller padding */
+                font-size: 14px; /* Smaller font size */
+                top: 10px; /* Adjust position to be closer to the top */
+                right: 10px; /* Adjust position to be closer to the right edge */
+                width: auto; /* Adjust width to fit content */
             }
         }
     </style>

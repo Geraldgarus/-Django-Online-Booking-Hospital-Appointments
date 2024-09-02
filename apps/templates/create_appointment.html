@@ -1,7 +1,7 @@
 {% extends 'layouts/base1.html' %}
 <link rel="stylesheet" href="/static/assets/css/form.css" type="text/css">
 
-{% block title %} Tables {% endblock title %}
+{% block title %} Create Appointment {% endblock title %}
 
 {% block content %}
     <style>
@@ -41,6 +41,12 @@
             flex: 1 1 100%; /* Full width for the description field */
         }
 
+        /* Ensures the date field spans the full width of its row */
+        .form-field.date {
+            flex: 1 1 100%; /* Full width for the date field */
+            max-width: 100%; /* Ensure it does not exceed container width */
+        }
+
         .form-group {
             margin-bottom: 15px;
         }
@@ -77,25 +83,22 @@
     </style>
 
     <div class="form-container">
+        <h1>Create an Appointment</h1>
         <form method="post">
             {% csrf_token %}
-            <!-- First Row: First Name and Last Name -->
-            <div class="form-row">
-                <div class="form-field">
-                    {{ form.first_name.label_tag }}
-                    {{ form.first_name }}
-                </div>
-                <div class="form-field">
-                    {{ form.last_name.label_tag }}
-                    {{ form.last_name }}
-                </div>
-            </div>
-
-            <!-- Second Row: Description -->
+            <!-- Description Field -->
             <div class="form-row">
                 <div class="form-field description">
                     {{ form.description.label_tag }}
                     {{ form.description }}
+                </div>
+            </div>
+
+            <!-- Date Field -->
+            <div class="form-row">
+                <div class="form-field date">
+                    {{ form.date.label_tag }}
+                    {{ form.date }}
                 </div>
             </div>
 

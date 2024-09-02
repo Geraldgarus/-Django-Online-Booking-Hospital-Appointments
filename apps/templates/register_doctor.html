@@ -103,6 +103,16 @@
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
                     {{ form.username.label_tag }}
                     {{ form.username }}
                 </div>
@@ -127,5 +137,17 @@
             <p>Already have an account? <a href="{% url 'login2' %}">Login here</a></p>
         </div>
     </div>
+
+    <!-- JavaScript to show the alert message -->
+    <script>
+        // Check if there's a success message from Django messages framework
+        {% if messages %}
+            {% for message in messages %}
+                if (message.level === 20) { // level 20 is for success messages
+                    alert('{{ message|escapejs }}');
+                }
+            {% endfor %}
+        {% endif %}
+    </script>
 </body>
 </html>

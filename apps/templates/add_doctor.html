@@ -1,9 +1,9 @@
 {% extends 'layouts/base2.html' %}
 
-{% block title %} DoctorRegistration{% endblock title %}
+{% block title %} Doctor Registration {% endblock title %}
 
 {% block content %}
-    <h1>DoctorRegistration</h1>
+    <h1>Doctor Registration</h1>
 
     <style>
         /* Internal CSS Styles */
@@ -91,19 +91,8 @@
     <div class="form-container">
         <form method="post">
             {% csrf_token %}
-            <!-- First Row: First Name and Last Name -->
-            <div class="form-row">
-                <div class="form-field">
-                    {{ form.first_name.label_tag }}
-                    {{ form.first_name }}
-                </div>
-                <div class="form-field">
-                    {{ form.last_name.label_tag }}
-                    {{ form.last_name }}
-                </div>
-            </div>
 
-            <!-- Second Row: Specialist -->
+            <!-- Specialist Field -->
             <div class="form-row specialist-field">
                 <div class="form-field">
                     {{ form.specialist.label_tag }}

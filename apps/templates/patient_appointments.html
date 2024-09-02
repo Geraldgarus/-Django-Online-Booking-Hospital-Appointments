@@ -5,36 +5,38 @@
 {% block content %}
     <h1>My Appointments</h1>
     <div class="table-wrapper">
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.first_name }}</td>
-                <td>{{ appointment.last_name }}</td>
-                <td>{{ appointment.description }}</td>
-                <td>
-                    <a href="{% url 'appointment_update' pk=appointment.id %}" class="btn btn-primary">Update</a>
-                    <form action="{% url 'appointment_delete' pk=appointment.id %}" method="post" style="display:inline;" id="delete-form-{{ appointment.id }}">
-                        {% csrf_token %}
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ appointment.id }})">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="4">No appointments found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th> <!-- Added ID column -->
+                  
+                    <th>Description</th>
+                    <th>Date</th> <!-- Added Date column -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.id }}</td> <!-- Displaying ID -->
+                    <!-- Accessing last name through the user field -->
+                    <td>{{ appointment.description }}</td>
+                    <td>{{ appointment.date }}</td> <!-- Displaying Date -->
+                    <td>
+                        <a href="{% url 'appointment_update' pk=appointment.id %}" class="btn btn-primary">Update</a>
+                        <form action="{% url 'appointment_delete' pk=appointment.id %}" method="post" style="display:inline;" id="delete-form-{{ appointment.id }}">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ appointment.id }})">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No appointments found.</td> <!-- Adjusted colspan to match number of columns -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <script>
         function confirmDelete(id) {

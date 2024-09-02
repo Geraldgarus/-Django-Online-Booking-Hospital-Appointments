@@ -1,0 +1,41 @@
+{% extends 'layouts/base1.html' %}
+
+{% block title %}Doctor Details{% endblock title %}
+
+{% block content %}
+    <h1>Doctor Details</h1>
+
+    {% if doctor_records %}
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Specialist</th>
+                    <th>Doctor Name</th>
+                    <th>Action</th> <!-- New column for the button -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in doctor_records %}
+                    <tr>
+                        <td>{{ record.specialist }}</td>
+                        <td>{{ record.doctor.first_name }} {{ record.doctor.last_name }}</td>
+                        <td>
+                            <a href="{% url 'create_appointment' %}" class="btn btn-primary">Book Appointment</a>
+                            <!-- Use the URL name 'book_appointment' and pass the doctor's ID -->
+                            <!-- Adjust the URL name and parameters according to your setup -->
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>No doctor records found.</p>
+    {% endif %}
+
+{% include "includes/footer.html" %}
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

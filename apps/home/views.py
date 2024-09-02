@@ -10,12 +10,12 @@ from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from .forms import DoctorRegistrationForm, PatientRegistrationForm, CustomAuthenticationForm
-from django.contrib.auth import login
+
 from .models import  Doctor, Patient
-from django.contrib.auth import authenticate, login
+
 from django.contrib import messages
-from .forms import AppointmentForm, AddDoctorForm, AttendForm
-from .models import AddDoctor
+from .forms import AppointmentForm, AttendForm
+from .models import AddDoctor123
 from .models import Attend
 from .models import Appointment
 from django.views.generic import TemplateView
@@ -23,21 +23,17 @@ from django.contrib.auth import login as auth_login
 from django.http import HttpResponseForbidden
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import AddDoctorForm 
+
+
 from .models import Patient
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login
 from django.views.generic import ListView
 from .models import Appointment
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import  DeleteView
 from .forms import ManagerRegistrationForm
-from .models import Notification, AddDoctor
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.http import JsonResponse
 
 @login_required(login_url="/login/")
 def index1(request):
@@ -131,37 +127,25 @@ def logout1(request):
 #
 #appointment form
 
+@login_required  # Ensure that only authenticated users can create appointments
 def create_appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('patient_appointments')
+            # Create a new appointment instance but don't save it yet
+            appointment = form.save(commit=False)
+            # Set the user field to the currently authenticated user
+            appointment.user = request.user
+            # Save the appointment instance to the database
+            appointment.save()
+            return redirect('patient_appointments')  # Redirect to a page showing the list of appointments or another relevant page
     else:
         form = AppointmentForm()
+    
     return render(request, 'create_appointment.html', {'form': form})
 
 #ad doctor
 
-
-def add_doctor(request, pk=None):
-    # If pk is provided, fetch the Attend object to prepopulate fields
-    if pk:
-        attend = get_object_or_404(Attend, pk=pk)
-        initial_data = {
-            'first_name': attend.first_name,
-            'last_name': attend.last_name,
-        }
-        form = AddDoctorForm(request.POST or None, initial=initial_data)
-    else:
-        form = AddDoctorForm(request.POST or None)
-    
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('index3')  # Redirect to the list view or any other view
-
-    return render(request, 'add_doctor.html', {'form': form})
 #retrieve doctors details
 
 def doctor_details(request):
@@ -171,15 +155,29 @@ def doctor_details(request):
     return render(request, 'doctor_details.html', {'doctors': doctors})
 
 #attend form
-def attend_create(request):
+
+def attend_view(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    doctor = request.user  # Assuming the authenticated user is a doctor
+
     if request.method == 'POST':
         form = AttendForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('Appointment_details')
+            attend = form.save(commit=False)
+            attend.appointment = appointment
+            attend.doctor = doctor  # Set the authenticated user as the doctor
+            attend.save()
+            return redirect('Appointment_details')  # Redirect to a list or success page
     else:
+        # Initialize the form with empty data
         form = AttendForm()
-    return render(request, 'attend_create.html', {'form': form})
+    
+    context = {
+        'appointment': appointment,
+        'form': form,
+        'doctor': doctor 
+    }
+    return render(request, 'attend_detail.html', context)
 
 #attend_list
 def attend_list(request):
@@ -265,27 +263,30 @@ class index3View(TemplateView):
         context['total_patients'] = Patient.objects.count()  # Get total patients count
         return context
     
-class index2View(TemplateView):
+
+
+class Index2View(TemplateView):
     template_name = 'index2.html'
-        
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['total_appointments'] = Appointment.objects.count()  # Get total count
-        context['total_doctors'] = AddDoctor.objects.count()  # Get total doctors count
-       
+        context['total_done_appointments'] = Appointment.objects.count()  # Get total done appointments
+        context['total_doctors'] = AddDoctor123.objects.count()  # Get total doctors count from AddDoctor123
         return context
-    
 #registration forms
+
 
 def register_doctor(request):
     if request.method == 'POST':
         form = DoctorRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Account created successfully. You may now login.')
             return redirect('login2')
     else:
         form = DoctorRegistrationForm()
     return render(request, 'register_doctor.html', {'form': form})
+
 
 def register_patient(request):
     if request.method == 'POST':
@@ -330,17 +331,24 @@ def profile(request):
     return render(request, 'profile.html')
 
 #update appointment
+
+@login_required  # Ensure that only authenticated users can update appointments
 def update_appointment(request, pk):
     appointment = get_object_or_404(Appointment, pk=pk)
+    
     if request.method == 'POST':
         form = AppointmentForm(request.POST, instance=appointment)
         if form.is_valid():
-            form.save()
+            # Ensure the user field is set to the currently authenticated user
+            appointment = form.save(commit=False)
+            appointment.user = request.user
+            appointment.save()
             return redirect('appointment_lists')  # Redirect to the list after saving
     else:
         form = AppointmentForm(instance=appointment)
     
-    return render(request, 'appointment_form.html', {'form': form})
+    return render(request, 'appointment_form.html', {'form': form, 'appointment': appointment})
+
 
 #delete appointmwnt
 def delete_appointment(request, pk):
@@ -473,9 +481,40 @@ def profile_d(request):
     return render(request, 'profile_d.html')
 
 #notifications
-def notifications_data(request):
-    # Fetch data from AddDoctor model
-    doctors = AddDoctor.objects.all().values('name', 'specialty', 'created_at')
-    doctor_list = list(doctors)
-    count = len(doctor_list)
-    return JsonResponse({'count': count, 'notifications': doctor_list})
+
+#add doctor
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import AddDoctor123Form
+from .models import AddDoctor123
+
+@login_required
+def create_adddoctor123(request):
+    if request.method == "POST":
+        form = AddDoctor123Form(request.POST)
+        if form.is_valid():
+            # Create a new AddDoctor123 record with the authenticated user
+            adddoctor123_instance = form.save(commit=False)
+            adddoctor123_instance.doctor = request.user  # Set the authenticated user
+            adddoctor123_instance.save()
+            return redirect('index3')  # Redirect to a success page or another view
+    else:
+        form = AddDoctor123Form()
+
+    return render(request, 'create_adddoctor123.html', {'form': form})
+
+#doctor details123
+from django.shortcuts import render
+from .models import AddDoctor123
+
+def doctor_details123(request):
+    # Fetch all records from AddDoctor123
+    doctor_records = AddDoctor123.objects.all()
+    
+    # Render the template with the fetched records
+    return render(request, 'doctordetails123.html', {'doctor_records': doctor_records})
+
+
+
+

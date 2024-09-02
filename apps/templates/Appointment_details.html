@@ -3,6 +3,7 @@
 {% block title %} Tables {% endblock title %}
 
 {% block content %}
+<div class="table-wrapper">
     <table>
         <thead>
             <tr>
@@ -17,11 +18,12 @@
             {% for Appointment in Appointments %}
                 <tr>
                     <td>{{ Appointment.id }}</td>
-                    <td>{{ Appointment.first_name }}</td>
-                    <td>{{ Appointment.last_name }}</td>
+                    <td>{{ Appointment.user.first_name }}</td> <!-- Accessing user's first name -->
+                    <td>{{ Appointment.user.last_name }}</td>  <!-- Accessing user's last name -->
                     <td>{{ Appointment.description }}</td>
                     <td class="actions">
-                        <a href="{% url 'attend_create' %}" class="btn btn-update">Attend</a>
+                        <a href="{% url 'attend_detail' appointment_id=Appointment.id %}" class="btn btn-update">Attend</a>
+
                         <!-- Delete Button with JavaScript Confirmation -->
                        
                     </td>
@@ -33,6 +35,7 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 
     {% include "includes/footer.html" %}
 {% endblock content %}

@@ -1,100 +1,122 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser, Doctor, Patient
-from .models import Appointment, AddDoctor, Attend
+from .models import Appointment, Attend
 from django.contrib.auth.forms import AuthenticationForm
 from .models import CustomUser, Manager
-
+from .models import AddDoctor123
 #registration form
+
 class DoctorRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=True, label='First Name')
+    last_name = forms.CharField(max_length=30, required=True, label='Last Name')
+    username = forms.CharField(max_length=150, required=True, label='Username')
+    email = forms.EmailField(required=True, label='Email')
+    password1 = forms.CharField(widget=forms.PasswordInput(), label='Password')
+    password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.user_type = 'DOCTOR'
         if commit:
             user.save()
-            Doctor.objects.create(user=user, first_name='', last_name='')
+            Doctor.objects.create(
+                user=user, 
+                first_name=self.cleaned_data['first_name'], 
+                last_name=self.cleaned_data['last_name']
+            )
         return user
 
 class PatientRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=True, label='First Name')
+    last_name = forms.CharField(max_length=30, required=True, label='Last Name')
+    username = forms.CharField(max_length=150, required=True, label='Username')
+    email = forms.EmailField(required=True, label='Email')
+    password1 = forms.CharField(widget=forms.PasswordInput(), label='Password')
+    password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.user_type = 'PATIENT'
         if commit:
             user.save()
-            Patient.objects.create(user=user, first_name='', last_name='')
+            Patient.objects.create(
+                user=user, 
+                first_name=self.cleaned_data['first_name'], 
+                last_name=self.cleaned_data['last_name']
+            )
         return user
 
 class CustomAuthenticationForm(AuthenticationForm):
     pass
 
-
 class ManagerRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=True, label='First Name')
+    last_name = forms.CharField(max_length=30, required=True, label='Last Name')
+    username = forms.CharField(max_length=150, required=True, label='Username')
+    email = forms.EmailField(required=True, label='Email')
+    password1 = forms.CharField(widget=forms.PasswordInput(), label='Password')
+    password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.user_type = 'MANAGER'
         if commit:
             user.save()
-            # Create a Manager instance for the newly created user
-            Manager.objects.create(user=user, first_name='', last_name='')
+            Manager.objects.create(
+                user=user, 
+                first_name=self.cleaned_data['first_name'], 
+                last_name=self.cleaned_data['last_name']
+            )
         return user
 
 
 
-
-
-
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['first_name', 'last_name', 'description']
-
-class AddDoctorForm(forms.ModelForm):
-    class Meta:
-        model = AddDoctor
-        fields = ['first_name', 'last_name', 'specialist']
+        fields = ['description', 'date']  # Only include the fields you need
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'specialist': forms.TextInput(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'type': 'date'})  # This ensures a date picker is used
         }
-        
+
+
+#adddoctor form
+
+
 class AttendForm(forms.ModelForm):
     class Meta:
         model = Attend
-        fields = ['first_name', 'last_name', 'description', 'cost', 'doctor', 'appointment']
+        fields = ['comment', 'cost', 'date']  # Include fields you want in the form
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
-            'cost': forms.NumberInput(attrs={'step': '0.01'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),  # Use a date picker for the date field
+            'comment': forms.Textarea(attrs={'rows': 4, 'cols': 40}),  # Customize the comment textarea
+            'cost': forms.NumberInput(attrs={'step': '0.01'})  # Allow decimal values for cost
+        }
+        labels = {
+            'comment': 'Comment',
+            'cost': 'Cost',
+            'date': 'Date of Attendance'
+        }
+#add doctor 
+
+class AddDoctor123Form(forms.ModelForm):
+    class Meta:
+        model = AddDoctor123
+        fields = ['specialist', 'date']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
 
-#update
-class AppointmentForm(forms.ModelForm):
-    class Meta:
-        model = Appointment
-        fields = ['first_name', 'last_name', 'description']
-        
-#add form
-class AddDoctorForm(forms.ModelForm):
-    class Meta:
-        model = AddDoctor
-        fields = ['first_name', 'last_name', 'specialist']  # 
-        
-        
-#patient apppointments
-
-class AppointmentForm(forms.ModelForm):
-    class Meta:
-        model = Appointment
-        fields = ['first_name', 'last_name', 'description']

@@ -1,0 +1,87 @@
+{% extends 'layouts/base2.html' %}
+
+{% block title %}Create Appointment{% endblock title %}
+
+{% block content %}
+    <h1>Create AddDoctor123 Record</h1>
+
+    <style>
+        /* General form styling */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        /* Form field styling */
+        .form-row {
+            margin-bottom: 1em;
+        }
+
+        .form-row label {
+            margin-bottom: .5em;
+            color: #333;
+            display: block;
+        }
+
+        .form-row input,
+        .form-row textarea {
+            border: 1px solid #ccc;
+            padding: 0.5em;
+            font-size: 1em;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .form-row button {
+            padding: 0.7em;
+            color: #fff;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .form-row button:hover {
+            background: #0056b3;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            form {
+                padding: 0.5em;
+            }
+
+            .form-row input,
+            .form-row textarea {
+                font-size: 0.9em;
+            }
+
+            .form-row button {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            {{ form.specialist.label_tag }}
+            {{ form.specialist }}
+        </div>
+        <div class="form-row">
+            {{ form.date.label_tag }}
+            {{ form.date }}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% include "includes/footer.html" %}
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

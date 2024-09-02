@@ -44,28 +44,38 @@
         }
     </style>
     
-    <form method="post" class="form-container">
-        {% csrf_token %}
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.first_name.id_for_label }}">First Name:</label>
-                {{ form.first_name }}
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Display user information -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <p>{{ appointment.user.first_name }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <p>{{ appointment.user.last_name }}</p>
+                </div>
             </div>
+            
+            <!-- Description Field -->
             <div class="form-group">
-                <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
-                {{ form.last_name }}
+                <label for="{{ form.description.id_for_label }}">Description:</label>
+                {{ form.description }}
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.description.id_for_label }}">Description:</label>
-            {{ form.description }}
-        </div>
-        
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{% url 'patient_appointments' %}" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
+            
+            <!-- Date Field (if you have a date field in your form) -->
+            <div class="form-group">
+                <label for="{{ form.date.id_for_label }}">Date:</label>
+                {{ form.date }}
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'patient_appointments' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

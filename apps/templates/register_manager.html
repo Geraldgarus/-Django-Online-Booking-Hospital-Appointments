@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register manager</title>
+    <title>Register Manager</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,9 +98,19 @@
 </head>
 <body>
     <div class="container">
-        <h2>Register as manager</h2>
+        <h2>Register as Manager</h2>
         <form method="post">
             {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     {{ form.username.label_tag }}

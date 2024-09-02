@@ -5,7 +5,7 @@ from .views import (
     index2,
     index3,
     pages,
-    
+    create_adddoctor123,
     doctor_list,
     add_doctor,
     delete_doctor,
@@ -16,7 +16,7 @@ from .views import (
  
     create_appointment,
     doctor_details,
-    attend_create,
+    attend_view,
     attend_list,
     attend_list_m,
     dashboard,
@@ -27,7 +27,7 @@ from .views import (
     AppointmentListView,
      index1View,
     index3View,
-     index2View,
+   
      AppointmentDeleteView,
      appointments_details,
   register_doctor, register_patient, login2,
@@ -45,13 +45,18 @@ appointment_delete,
     update_attend, 
     delete_attend1,
     update_attend1,
-    notifications_data,
+   
       profile_p,
       profile_d ,
+      doctor_details123,
+      Index2View,
 )
 
 urlpatterns = [
     path('', index, name='index'),
+    path('index2/', Index2View.as_view(), name='index2'),
+     path('attend/<int:appointment_id>/', attend_view, name='attend_detail'),
+     path('doctor_details123/', doctor_details123, name='doctor_details123'),
     path('attends/update/<int:id>/', update_attend, name='update_attend'),
     path('attend/delete/<int:pk>/', delete_attend, name='delete_attend'),
     path('appointment/<int:pk>/update/', appointment_update, name='appointment_update'),
@@ -74,12 +79,12 @@ urlpatterns = [
     path('Appointment_details_p/', Appointment_details_p, name='Appointment_details_p'),
     path('index1/', index1View.as_view(), name='index1'),
     path('index3/', index3View.as_view(), name='index3'),
-    path('index2/', index2View.as_view(), name='index2'),
+   
     path('pages/<str:template>/', pages, name='pages'),
     path('appointments_lists/', AppointmentListView.as_view(), name='appointments_lists'),
     path('appointment_lists/', AppointmentListView.as_view(), name='appointment_lists'),
     path('doctor_list/', doctor_list, name='doctor_list'),
-    path('add_doctor/', add_doctor, name='add_doctor'),
+ 
     path('doctors/delete/<int:doctor_id>/', delete_doctor, name='delete_doctor'),
     path('manager/dashboard/', manager_dashboard, name='manager_dashboard'),
     path('doctor/dashboard/', doctor_dashboard, name='doctor_dashboard'),
@@ -89,11 +94,11 @@ urlpatterns = [
   
     path('create_appointment/', create_appointment, name='create_appointment'),
     path('doctor_details/', doctor_details, name='doctor_details'),
-    path('attend_create/', attend_create, name='attend_create'),
+
     path('attend_list/', attend_list, name='attend_list'),
     path('attend_list_m/', attend_list_m, name='attend_list_m'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('Appointment_details/', Appointment_details, name='Appointment_details'),
+     path('Appointment_details/', Appointment_details, name='Appointment_details'),
     
     path('add_doctor/', add_doctor, name='add_doctor'),
     path('index1/', index1, name='index1'),
@@ -102,7 +107,7 @@ urlpatterns = [
    
     path('about/', about, name='about'), 
    
-       path('notifications_data/', notifications_data, name='notifications_data'),
+      path('create/', create_adddoctor123, name='create_adddoctor123'),
     path('profile_p/', profile_p, name='profile_p'),
     path('profile_d/',profile_d , name='profile_d'),
      
