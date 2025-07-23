@@ -436,20 +436,34 @@ def appointment_delete(request, pk):
             
             
 #doctor atteded
-def update_attend(request, id):
-    # Fetch the Attend object by its ID
-    attend = get_object_or_404(Attend, id=id)
+
+def update_attend_view(request, appointment_id, attend_id):
+    # Retrieve the Appointment and Attend objects
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    attend = get_object_or_404(Attend, id=attend_id)
+    doctor = request.user  # Assuming the authenticated user is a doctor
+
+    # Check if the doctor is allowed to update this Attend record
+    if attend.doctor != doctor:
+        return redirect('attend_list')  # Redirect to an error page or show a message
 
     if request.method == 'POST':
         form = AttendForm(request.POST, instance=attend)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Attend record updated successfully.')
-            return redirect('attend_list')  # Redirect to the list view or wherever you want
+            updated_attend = form.save(commit=False)
+            updated_attend.appointment = appointment
+            updated_attend.doctor = doctor  # Ensure the doctor remains the same
+            updated_attend.save()
+            return redirect('attend_list')  # Redirect to details page or success page
     else:
         form = AttendForm(instance=attend)
-
-    return render(request, 'update_attend.html', {'form': form})
+    
+    context = {
+        'appointment': appointment,
+        'form': form,
+        'doctor': doctor
+    }
+    return render(request, 'update_attend.html', context)
 
 def delete_attend(request, pk):
     """

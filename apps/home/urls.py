@@ -42,10 +42,10 @@ from .views import (
   patient_appointments,
 appointment_delete,
     appointment_update,
-    update_attend, 
+ 
     delete_attend1,
     update_attend1,
-   
+   update_attend_view,
       profile_p,
       profile_d ,
       doctor_details123,
@@ -54,10 +54,11 @@ appointment_delete,
 
 urlpatterns = [
     path('', index, name='index'),
+    path('appointments/<int:appointment_id>/attend/<int:attend_id>/update/', update_attend_view, name='update_attend'),
     path('index2/', Index2View.as_view(), name='index2'),
      path('attend/<int:appointment_id>/', attend_view, name='attend_detail'),
      path('doctor_details123/', doctor_details123, name='doctor_details123'),
-    path('attends/update/<int:id>/', update_attend, name='update_attend'),
+   
     path('attend/delete/<int:pk>/', delete_attend, name='delete_attend'),
     path('appointment/<int:pk>/update/', appointment_update, name='appointment_update'),
     path('appointment/<int:pk>/delete/', appointment_delete, name='appointment_delete'),

@@ -33,7 +33,7 @@
                   
                     <td class="actions">
                         <!-- Update Button -->
-                        <a href="{% url 'update_attend' attend.id %}" class="btn btn-update">Update</a>
+                        <a href="{% url 'update_attend' appointment_id=attend.appointment.id attend_id=attend.id %}" class="btn btn-update">Update</a>
                         <!-- Delete Button -->
                         <form action="{% url 'delete_attend' attend.id %}" method="post" style="display:inline;" onsubmit="return confirmDelete();">
                             {% csrf_token %}
